@@ -47,8 +47,6 @@ def start():
     error()
     check(raw_data)
     check2(raw_data)
-    sleep(60)
-    start()
 
 
 start()
