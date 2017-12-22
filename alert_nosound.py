@@ -1,5 +1,4 @@
 import json
-from playsound import playsound
 from time import sleep
 
 def data():
@@ -19,12 +18,6 @@ def check(raw_data):
     msg = t2['Discovered']
     if msg == True:
         print('Acylote found in: ', t2['LastDiscoveredLocation'])
-        try:
-            while msg == True:
-                playsound('alert_sound.wav'), input('Press any key to stop')
-        except KeyboardInterrupt:
-            pass
-
 
 def start():
     print('Checking')
