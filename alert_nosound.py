@@ -29,7 +29,7 @@ def check(raw_data):
     msg = t2['Discovered']
     print(msg)
     if msg:
-        print('Acylote found in: ', t2['LastDiscoveredLocation'])
+        print('Angst found in: ', t2['LastDiscoveredLocation'])
 
 
 def check2(raw_data):
@@ -38,13 +38,12 @@ def check2(raw_data):
     msg = t2['Discovered']
     print(msg)
     if msg:
-        print('Acylote found in: ', t2['LastDiscoveredLocation'])
+        print('Malice found in: ', t2['LastDiscoveredLocation'])
 
 
 def start():
     print('Checking')
     data()
-    error()
     check(raw_data)
     check2(raw_data)
 
