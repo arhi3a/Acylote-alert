@@ -6,7 +6,7 @@ names = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 'Malice',
          "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 'Angst',
          "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 'Torment',
          }
-timestp = ((time.localtime()[0], 'Year', time.localtime()[1], 'Month',
+timestp = ((time.localtime()[1], 'Month',
             time.localtime()[2], 'Day', time.localtime()[3], 'Hours',
             time.localtime()[4], 'Minutes'))
 
