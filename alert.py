@@ -2,6 +2,10 @@ import json
 import time
 import requests
 
+names = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 'Malice',
+         "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 'Angst'
+         }
+
 
 def data():
     from urllib.request import urlopen
@@ -20,15 +24,14 @@ def error():
         print(z)
 
 
-
 def check(raw_data):
     t = json.loads(raw_data)
     t2 = (dict(t['PersistentEnemies'][0]))
     msg = t2['Discovered']
     print(msg)
+    name = (t2['AgentType'])
     if msg:
-        print('Angst found in: ', t2['LastDiscoveredLocation'])
-
+        print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
 
 
 def check2(raw_data):
@@ -36,9 +39,9 @@ def check2(raw_data):
     t2 = (dict(t['PersistentEnemies'][1]))
     msg = t2['Discovered']
     print(msg)
+    name = (t2['AgentType'])
     if msg:
-        print('Malice found in: ', t2['LastDiscoveredLocation'])
-    return raw_data, t, t2
+        print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
 
 
 def start():
@@ -53,3 +56,4 @@ def start():
 
 
 start()
+
