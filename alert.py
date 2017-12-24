@@ -7,9 +7,6 @@ names = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 'Malice',
          "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 'Angst',
          "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 'Torment',
          }
-timestp = ((time.localtime()[1], 'Month',
-            time.localtime()[2], 'Day', time.localtime()[3], 'Hours',
-            time.localtime()[4], 'Minutes'))
 
 dts = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 0,
        "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 0,
@@ -41,8 +38,7 @@ def check(raw_data):
     print(msg)
     name = (t2['AgentType'])
     if msg:
-        print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
-              timestp)
+        print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
         dts[name] += 1
     else:
         dts[name] -= dts[name]
@@ -55,8 +51,7 @@ def check2(raw_data):
     print(msg)
     name = (t2['AgentType'])
     if msg:
-        print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
-              timestp)
+        print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
         dts[name] += 1
     else:
         dts[name] -= dts[name]
@@ -69,8 +64,7 @@ def check3(raw_data):
     print(msg)
     name = (t2['AgentType'])
     if msg:
-        print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
-              timestp)
+        print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
         dts[name] += 1
     else:
         dts[name] -= dts[name]
@@ -95,7 +89,7 @@ def get_api(cfg):
 
 def main():
     if checker() != '':
-        print ('MSG SENT')
+        print('MSG SENT')
         # Fill in the values noted in previous step here
         cfg = {
             "consumer_key": "$",
@@ -124,7 +118,7 @@ def start():
     check3(raw_data)
     time.sleep(1)
     print(dts)
-    main() #Delete this to remove twitter notification
+    main()  # Delete this to remove twitter notification
     time.sleep(60)
     start()
 
