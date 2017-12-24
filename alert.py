@@ -6,16 +6,38 @@ import tweepy
 names = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 'Malice',
          "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 'Angst',
          "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 'Torment',
+         "/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent": 'Violence'
          }
 
 dts = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 0,
        "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 0,
        "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 0,
+       "/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent": 0,
        }
 
 nods = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
-        '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': ''}
+        '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
+        '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+        }
+
+region = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
+          '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
+          '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
+          '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+          }
+
+hp = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
+      '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
+      '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
+      '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+      }
+
+rank = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
+        '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
+        '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': str(''),
+        '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+        }
 cnt = 0
 
 
@@ -45,9 +67,15 @@ def check(raw_data):
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
         dts[name] += 1
         nods[name] = t2['LastDiscoveredLocation']
+        region[name] = str(t2['Region'])
+        hp[name] = str(t2['HealthPercent'] * 100)
+        rank[name] = str(t2['Rank'])
     else:
         dts[name] -= dts[name]
         nods[name] = ''
+        region[name] = ''
+        hp[name] = ''
+        rank[name] = ''
 
 
 def check2(raw_data):
@@ -59,9 +87,14 @@ def check2(raw_data):
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
         dts[name] += 1
         nods[name] = t2['LastDiscoveredLocation']
+        region[name] = str(t2['Region'])
+        hp[name] = str(t2['HealthPercent'] * 100)
+        rank[name] = str(t2['Rank'])
     else:
         dts[name] -= dts[name]
         nods[name] = ''
+        region[name] = ''
+        hp[name] = ''
 
 
 def check3(raw_data):
@@ -73,22 +106,70 @@ def check3(raw_data):
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
         dts[name] += 1
         nods[name] = t2['LastDiscoveredLocation']
+        region[name] = str(t2['Region'])
+        hp[name] = str(t2['HealthPercent'] * 100)
+        rank[name] = str(t2['Rank'])
     else:
         dts[name] -= dts[name]
         nods[name] = ''
+        region[name] = ''
+        hp[name] = ''
+
+
+def check4(raw_data):
+    t = json.loads(raw_data)
+    t2 = (dict(t['PersistentEnemies'][3]))
+    msg = t2['Discovered']
+    name = (t2['AgentType'])
+    if msg:
+        print(names[name], ' found in: ', t2['LastDiscoveredLocation'])
+        dts[name] += 1
+        nods[name] = t2['LastDiscoveredLocation']
+        region[name] = str(t2['Region'])
+        hp[name] = str(t2['HealthPercent'] * 100)
+        rank[name] = str(t2['Rank'])
+    else:
+        dts[name] -= dts[name]
+        nods[name] = ''
+        region[name] = ''
+        hp[name] = ''
 
 
 def checker():
     answ = ''
     if dts['/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] == 1:
         answ += 'Malice Found' + ' ' + str(cnt) + ' ' + nods[
-            '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + '\n'
+            '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + \
+                region[
+                    '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + \
+                hp['/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + \
+                rank[
+                    '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     if dts['/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] == 1:
         answ += 'Angst Found' + ' ' + str(cnt) + ' ' + nods[
-            '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] + '\n'
+            '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] + ' ' + \
+                region['/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] \
+                + ' ' + hp[
+                    '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] + ' ' + \
+                rank[
+                    '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] + ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     if dts['/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] == 1:
         answ += 'Torment Found' + ' ' + str(cnt) + ' ' + nods[
-            '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] + '\n'
+            '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] + ' ' + \
+                region['/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] \
+                + ' ' + hp[
+                    '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] + ' ' + \
+                rank[
+                    '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] + ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
+    if dts['/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] == 1:
+        answ += 'Violence Found' + ' ' + str(cnt) + ' ' + nods[
+            '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] + ' ' + \
+                region['/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent' \
+                       ''] + ' ' + hp[
+                    '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] + \
+                ' ' + rank[
+                    '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] + \
+                ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     return answ
 
 
@@ -135,6 +216,8 @@ def start():
     time.sleep(1)
     check3(raw_data)
     time.sleep(1)
+    check4(raw_data)
+    time.sleep(1)
     db()
     main()  # Delete this to remove twitter notification
     time.sleep(60)
@@ -146,3 +229,4 @@ start()
 
 ### Tiwtter guide: http://nodotcom.org/python-twitter-tutorial.html
 ### World stats: http://content.warframe.com/dynamic/worldState.php
+# Data.txt format: Name cnt Nod region hp rank
