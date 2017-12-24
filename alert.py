@@ -35,7 +35,7 @@ hp = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
 
 rank = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
-        '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': str(''),
+        '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
         }
 cnt = 0
@@ -215,8 +215,6 @@ def start():
     check2(raw_data)
     time.sleep(1)
     check3(raw_data)
-    time.sleep(1)
-    check4(raw_data)
     time.sleep(1)
     db()
     main()  # Delete this to remove twitter notification
