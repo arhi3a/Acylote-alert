@@ -10,9 +10,10 @@ timestp = ((time.localtime()[1], 'Month',
             time.localtime()[2], 'Day', time.localtime()[3], 'Hours',
             time.localtime()[4], 'Minutes'))
 
-cla = []
-cnt1 = []
-cnt2 = []
+dts ={"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 0,
+      "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 0,
+      "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 0,
+      }
 
 def data():
     from urllib.request import urlopen
@@ -40,9 +41,9 @@ def check(raw_data):
     if msg:
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
               timestp)
-        cla.append(1)
+        dts[name] += 1
     else:
-        cla.clear()
+        dts[name] -= dts[name]
 
 def check2(raw_data):
     t = json.loads(raw_data)
@@ -53,9 +54,9 @@ def check2(raw_data):
     if msg:
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
               timestp)
-        cnt1.append(1)
+        dts[name] += 1
     else:
-        cnt1.clear()
+        dts[name] -= dts[name]
 
 
 def check3(raw_data):
@@ -67,17 +68,12 @@ def check3(raw_data):
     if msg:
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
               timestp)
-        cnt2.append(1)
+        dts[name] += 1
     else:
-        cnt2.clear()
+        dts[name] -= dts[name]
 
 def checker():
-    if len(cla) == 1:
-        print('Tweet 1')
-    if len(cnt1) == 1:
-        print('Tweet 2')
-    if len(cnt2) == 1:
-        print('Tweet 3')
+    print('test')
 
 def start():
     print('Checking')
@@ -90,8 +86,7 @@ def start():
     time.sleep(1)
     check3(raw_data)
     time.sleep(1)
-    print(cla, cnt1, cnt2)
-    checker()
+    print(dts)
     time.sleep(60)
     start()
 
