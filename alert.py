@@ -1,6 +1,7 @@
 import json
 import time
 import requests
+import tweepy
 
 names = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 'Malice',
          "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 'Angst',
@@ -10,10 +11,11 @@ timestp = ((time.localtime()[1], 'Month',
             time.localtime()[2], 'Day', time.localtime()[3], 'Hours',
             time.localtime()[4], 'Minutes'))
 
-dts ={"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 0,
-      "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 0,
-      "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 0,
-      }
+dts = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 0,
+       "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 0,
+       "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 0,
+       }
+
 
 def data():
     from urllib.request import urlopen
@@ -45,6 +47,7 @@ def check(raw_data):
     else:
         dts[name] -= dts[name]
 
+
 def check2(raw_data):
     t = json.loads(raw_data)
     t2 = (dict(t['PersistentEnemies'][1]))
@@ -72,8 +75,41 @@ def check3(raw_data):
     else:
         dts[name] -= dts[name]
 
+
 def checker():
-    print('test')
+    answ = ''
+    if dts['/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] == 1:
+        answ += ' Malice Found '
+    if dts['/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] == 1:
+        answ += ' Angst Found '
+    if dts['/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] == 1:
+        answ += ' Torment Found'
+    return answ
+
+
+def get_api(cfg):
+    auth = tweepy.OAuthHandler(cfg['consumer_key'], cfg['consumer_secret'])
+    auth.set_access_token(cfg['access_token'], cfg['access_token_secret'])
+    return tweepy.API(auth)
+
+
+def main():
+    if checker() != '':
+        # Fill in the values noted in previous step here
+        cfg = {
+            "consumer_key": "$",
+            "consumer_secret": "$",
+            "access_token": "$-$",
+            "access_token_secret": "$",
+        }
+
+        api = get_api(cfg)
+        tweet = "test!"
+        status = api.update_status(status=checker())
+        # Yes, tweet is called 'status' rather confusing
+    else:
+        pass
+
 
 def start():
     print('Checking')
@@ -87,6 +123,7 @@ def start():
     check3(raw_data)
     time.sleep(1)
     print(dts)
+    main() #Delete this to remove twitter notification
     time.sleep(60)
     start()
 
