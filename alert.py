@@ -10,7 +10,9 @@ timestp = ((time.localtime()[1], 'Month',
             time.localtime()[2], 'Day', time.localtime()[3], 'Hours',
             time.localtime()[4], 'Minutes'))
 
-chck= []
+cla = []
+cnt1 = []
+cnt2 = []
 
 def data():
     from urllib.request import urlopen
@@ -38,10 +40,9 @@ def check(raw_data):
     if msg:
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
               timestp)
-        return chck.append(1)
+        cla.append(1)
     else:
-        return chck.append(0)
-
+        cla.clear()
 
 def check2(raw_data):
     t = json.loads(raw_data)
@@ -52,9 +53,10 @@ def check2(raw_data):
     if msg:
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
               timestp)
-        return chck.append(1)
+        cnt1.append(1)
     else:
-        return chck.append(0)
+        cnt1.clear()
+
 
 def check3(raw_data):
     t = json.loads(raw_data)
@@ -65,20 +67,31 @@ def check3(raw_data):
     if msg:
         print(names[name], ' found in: ', t2['LastDiscoveredLocation'],
               timestp)
-        return chck.append(1)
+        cnt2.append(1)
     else:
-        return chck.append(0)
+        cnt2.clear()
 
-
+def checker():
+    if len(cla) == 1:
+        print('Tweet 1')
+    if len(cnt1) == 1:
+        print('Tweet 2')
+    if len(cnt2) == 1:
+        print('Tweet 3')
 
 def start():
     print('Checking')
     data()
-    raw_data = data()
     time.sleep(3)
+    raw_data = data()
     check(raw_data)
+    time.sleep(1)
     check2(raw_data)
+    time.sleep(1)
     check3(raw_data)
+    time.sleep(1)
+    print(cla, cnt1, cnt2)
+    checker()
     time.sleep(60)
     start()
 
