@@ -95,6 +95,7 @@ def get_api(cfg):
 
 def main():
     if checker() != '':
+        print ('MSG SENT')
         # Fill in the values noted in previous step here
         cfg = {
             "consumer_key": "$",
