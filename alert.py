@@ -129,3 +129,6 @@ def start():
 
 
 start()
+
+### Tiwtter guide: http://nodotcom.org/python-twitter-tutorial.html
+### World stats: http://content.warframe.com/dynamic/worldState.php
