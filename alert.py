@@ -6,37 +6,43 @@ import tweepy
 names = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 'Malice',
          "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 'Angst',
          "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 'Torment',
-         "/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent": 'Violence'
+         "/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent": 'Violence',
+         "/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent": 'Mania',
          }
 
 dts = {"/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent": 0,
        "/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent": 0,
        "/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent": 0,
        "/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent": 0,
+       "/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent": 0,
        }
 
 nods = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+        '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent': '',
         }
 
 region = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
           '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
           '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
           '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+          '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent': '',
           }
 
 hp = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
       '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
       '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
       '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+      '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent': '',
       }
 
 rank = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
+        '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent': '',
         }
 
 
@@ -214,6 +220,7 @@ def start():
     time.sleep(1)
     check3(raw_data)
     time.sleep(1)
+    check4(raw_data)
     db()
     main()  # Delete this to remove twitter notification
     time.sleep(60)
