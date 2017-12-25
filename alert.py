@@ -38,7 +38,6 @@ rank = {'/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent': '',
         '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent': '',
         }
-cnt = 0
 
 
 def data():
@@ -138,7 +137,7 @@ def check4(raw_data):
 def checker():
     answ = ''
     if dts['/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] == 1:
-        answ += 'Malice Found' + ' ' + str(cnt) + ' ' + nods[
+        answ += 'Malice Found' + ' ' + nods[
             '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + \
                 region[
                     '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + \
@@ -146,7 +145,7 @@ def checker():
                 rank[
                     '/Lotus/Types/Enemies/Acolytes/HeavyAcolyteAgent'] + ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     if dts['/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] == 1:
-        answ += 'Angst Found' + ' ' + str(cnt) + ' ' + nods[
+        answ += 'Angst Found' + ' ' + nods[
             '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] + ' ' + \
                 region['/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] \
                 + ' ' + hp[
@@ -154,7 +153,7 @@ def checker():
                 rank[
                     '/Lotus/Types/Enemies/Acolytes/StrikerAcolyteAgent'] + ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     if dts['/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] == 1:
-        answ += 'Torment Found' + ' ' + str(cnt) + ' ' + nods[
+        answ += 'Torment Found' + ' ' + nods[
             '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] + ' ' + \
                 region['/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] \
                 + ' ' + hp[
@@ -162,7 +161,7 @@ def checker():
                 rank[
                     '/Lotus/Types/Enemies/Acolytes/ControlAcolyteAgent'] + ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     if dts['/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] == 1:
-        answ += 'Violence Found' + ' ' + str(cnt) + ' ' + nods[
+        answ += 'Violence Found' + ' ' + nods[
             '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] + ' ' + \
                 region['/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent' \
                        ''] + ' ' + hp[
@@ -205,7 +204,6 @@ def db():
 
 
 def start():
-    global cnt
     print('Checking')
     data()
     time.sleep(3)
@@ -219,7 +217,6 @@ def start():
     db()
     main()  # Delete this to remove twitter notification
     time.sleep(60)
-    cnt += 1
     start()
 
 
@@ -227,4 +224,5 @@ start()
 
 ### Tiwtter guide: http://nodotcom.org/python-twitter-tutorial.html
 ### World stats: http://content.warframe.com/dynamic/worldState.php
-# Data.txt format: Name cnt Nod region hp rank
+# Data.txt format: Name cnt Nod region hp rank time (Day(week):month:day:hour(
+# GMT0):year)
