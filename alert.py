@@ -175,6 +175,16 @@ def checker():
                 ' ' + rank[
                     '/Lotus/Types/Enemies/Acolytes/DuellistAcolyteAgent'] + \
                 ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
+    if dts['/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent'] == 1:
+        answ += 'Mania Found' + ' ' + nods[
+            '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent'] + ' ' + \
+                region[
+                    '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent'] + ' ' + \
+                hp[
+                    '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent'] + \
+                ' ' + rank[
+                    '/Lotus/Types/Enemies/Acolytes/RogueAcolyteAgent'] + \
+                ' ' + '(' + time.ctime() + ')' + ' ' + '\n'
     return answ
 
 
@@ -220,9 +230,8 @@ def start():
     time.sleep(1)
     check3(raw_data)
     time.sleep(1)
-    check4(raw_data)
     db()
-    main()  # Delete this to remove twitter notification
+    # main()  # Delete this to remove twitter notification
     time.sleep(60)
     start()
 
